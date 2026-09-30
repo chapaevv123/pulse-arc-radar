@@ -1,4 +1,5 @@
+* text=auto eol=lf
 # Snapshot files are hashed byte-for-byte; never let git rewrite line endings.
+# (Later lines win, so these must come after the catch-all.)
 snapshots/** -text
 evidence/** -text
-* text=auto eol=lf

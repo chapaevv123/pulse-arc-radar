@@ -111,7 +111,7 @@ Agent metadata is third-party content. HEURISTIC signals (clusters, density) des
 
 ## Mainnet plan
 
-Three separate roles are used: the builder wallet (attribution), the Pulse agent wallet (ERC-8004 identity) and a separate deployer/recorder wallet (registry and anchors). The exact unsigned transactions are in [docs/CONTRACT.md](docs/CONTRACT.md) and `evidence/mainnet_tx_plan.json`. Nothing is signed until the owner approves each transaction.
+Two wallets are involved. The builder wallet provides attribution only. The Pulse wallet (by owner decision) owns the ERC-8004 identity, deploys the registry, is its recorder, and sends anchors, in strict nonce order. The exact unsigned transactions are in [docs/CONTRACT.md](docs/CONTRACT.md) and `evidence/mainnet_tx_plan.json`. Nothing is signed until the owner approves each transaction.
 
 ## License
 

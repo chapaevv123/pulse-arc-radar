@@ -5,24 +5,37 @@
   "roles": {
     "builder_wallet": "0x6Fa3659a15e9264E43EC67Fe4bB5d31D38109A42",
     "pulse_agent_wallet": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
-    "deployer_recorder_wallet": "PENDING_OWNER"
+    "deployer_recorder_wallet": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d"
   },
+  "ordering_rule": "Strict nonce order. The registry address depends on the deploy nonce; if the sender nonce is not exactly 0 at step 1, STOP and regenerate the plan.",
+  "predicted_registry_address": "0x1607Af4E1DA1C06362871443d2e95C367B984Efa",
   "transactions": [
     {
       "step": 1,
       "action": "DEPLOY_PulseActionProofRegistry",
-      "from": "PENDING_OWNER(separate deployer)",
+      "type": 2,
+      "chain_id": 5042,
+      "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+      "nonce": 0,
       "to": null,
       "value": "0",
-      "data": "creation_bytecode || 000000000000000000000000<DEPLOYER_ADDRESS_20_BYTES_NO_0x>",
-      "creation_bytecode_keccak256": "0xdeb263de46f571d32498cc1953f17af7577d89f1a046a9737d1cf988e99458e4",
-      "init_code_keccak256": null,
-      "expected_gas": 179515
+      "data": "0x60a0604052348015600e575f5ffd5b506040516102dc3803806102dc833981016040819052602b916061565b6001600160a01b038116605157604051630f1dc84560e21b815260040160405180910390fd5b6001600160a01b0316608052608c565b5f602082840312156070575f5ffd5b81516001600160a01b03811681146085575f5ffd5b9392505050565b6080516102336100a95f395f81816048015260d401526102335ff3fe608060405234801561000f575f5ffd5b506004361061003f575f3560e01c80631199060d1461004357806343f0949714610087578063828006bc1461009c575b5f5ffd5b61006a7f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020015b60405180910390f35b61009a6100953660046101c6565b6100c9565b005b6100bb6100aa3660046101e6565b5f6020819052908152604090205481565b60405190815260200161007e565b336001600160a01b037f00000000000000000000000000000000000000000000000000000000000000001614610112576040516358ccea3960e11b815260040160405180910390fd5b8161013057604051633872b6ab60e01b815260040160405180910390fd5b8061014e576040516334d531a160e11b815260040160405180910390fd5b5f828152602081905260409020541561017a57604051630ba187ab60e41b815260040160405180910390fd5b5f828152602081815260409182902083905590514281523391839185917fbc08342f0bc37dc2f89997d707270000e6317d31599ab4d20d7d0be2d3e61f7c910160405180910390a45050565b5f5f604083850312156101d7575f5ffd5b50508035926020909101359150565b5f602082840312156101f6575f5ffd5b503591905056fea2646970667358221220298926073a5bcae63994eb2faf77ed3935f5c25620bda2dc0ea89fae3d7495b664736f6c634300081e0033000000000000000000000000765fb7e6a0bdddc29f57eece34aeda0fb318805d",
+      "data_keccak256": "0x71f769adb3d108ced508df436c94cd27f9a5d7e3e2e705570d56d90ce441361c",
+      "expected_gas": 179515,
+      "gas_limit": 216000,
+      "max_fee_per_gas_wei": "40000000000",
+      "max_priority_fee_per_gas_wei": "1000000000",
+      "max_cost_usdc": "0.008640",
+      "expected_cost_usdc_at_20_gwei_base": "0.003770",
+      "creates": "0x1607Af4E1DA1C06362871443d2e95C367B984Efa"
     },
     {
       "step": 2,
       "action": "ERC8004_REGISTER_PULSE_AGENT",
+      "type": 2,
+      "chain_id": 5042,
       "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+      "nonce": 1,
       "to": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
       "value": "0",
       "method": "register(string)",
@@ -30,14 +43,21 @@
       "argument": "https://chapaevv123.github.io/pulse-arc-radar/agent/erc8004-registration.json",
       "data": "0xf2c298be0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004d68747470733a2f2f63686170616576763132332e6769746875622e696f2f70756c73652d6172632d72616461722f6167656e742f657263383030342d726567697374726174696f6e2e6a736f6e00000000000000000000000000000000000000",
       "expected_gas": 203545,
-      "expected_gas_source": "Arc mainnet eth_estimateGas from the Pulse wallet 2026-09-30; eth_call simulation succeeded (would mint agentId 1355 at that block)"
+      "gas_limit": 245000,
+      "max_fee_per_gas_wei": "40000000000",
+      "max_priority_fee_per_gas_wei": "1000000000",
+      "max_cost_usdc": "0.009800",
+      "expected_cost_usdc_at_20_gwei_base": "0.004274"
     },
     {
       "step": 3,
       "action": "ANCHOR_SNAPSHOT",
+      "type": 2,
+      "chain_id": 5042,
       "snapshot_id": "s-23556237",
-      "from": "PENDING_OWNER(recorder = deployer)",
-      "to": "PENDING_DEPLOYED_REGISTRY_ADDRESS",
+      "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+      "nonce": 2,
+      "to": "0x1607Af4E1DA1C06362871443d2e95C367B984Efa",
       "value": "0",
       "method": "recordProof(bytes32,bytes32)",
       "selector": "0x43f09497",
@@ -45,14 +65,21 @@
       "proof_hash": "0x161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14",
       "data": "0x43f094979081c207144b584c85e06508d7764464681b31c8131a8b754d228acea62e9679161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14",
       "expected_gas": 47257,
-      "expected_gas_source": "eth_estimateGas on the byte-identical Arc Testnet twin 0x1607...4Efa (first anchor for an actionId)"
+      "gas_limit": 57000,
+      "max_fee_per_gas_wei": "40000000000",
+      "max_priority_fee_per_gas_wei": "1000000000",
+      "max_cost_usdc": "0.002280",
+      "expected_cost_usdc_at_20_gwei_base": "0.000992"
     },
     {
       "step": 4,
       "action": "ANCHOR_SNAPSHOT",
+      "type": 2,
+      "chain_id": 5042,
       "snapshot_id": "s-23560821",
-      "from": "PENDING_OWNER(recorder = deployer)",
-      "to": "PENDING_DEPLOYED_REGISTRY_ADDRESS",
+      "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+      "nonce": 3,
+      "to": "0x1607Af4E1DA1C06362871443d2e95C367B984Efa",
       "value": "0",
       "method": "recordProof(bytes32,bytes32)",
       "selector": "0x43f09497",
@@ -60,14 +87,21 @@
       "proof_hash": "0x542f8377fd3972cf5c94f290197c12e480fc27b98bae1cba7aa70dfa38b5259a",
       "data": "0x43f0949794ac278571f63492f2f241c5fb3c0e2b559f8bbac36d0dd95dbd8e53735eba2b542f8377fd3972cf5c94f290197c12e480fc27b98bae1cba7aa70dfa38b5259a",
       "expected_gas": 47257,
-      "expected_gas_source": "eth_estimateGas on the byte-identical Arc Testnet twin 0x1607...4Efa (first anchor for an actionId)"
+      "gas_limit": 57000,
+      "max_fee_per_gas_wei": "40000000000",
+      "max_priority_fee_per_gas_wei": "1000000000",
+      "max_cost_usdc": "0.002280",
+      "expected_cost_usdc_at_20_gwei_base": "0.000992"
     },
     {
       "step": 5,
       "action": "ANCHOR_SNAPSHOT",
+      "type": 2,
+      "chain_id": 5042,
       "snapshot_id": "s-23564062",
-      "from": "PENDING_OWNER(recorder = deployer)",
-      "to": "PENDING_DEPLOYED_REGISTRY_ADDRESS",
+      "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+      "nonce": 4,
+      "to": "0x1607Af4E1DA1C06362871443d2e95C367B984Efa",
       "value": "0",
       "method": "recordProof(bytes32,bytes32)",
       "selector": "0x43f09497",
@@ -75,14 +109,19 @@
       "proof_hash": "0x3981f527707babfb6997a3f2690c4e22b51969abb3b2de2d005973a0bb869645",
       "data": "0x43f09497c3d579cdcb67d6911c24a70cd4cb507327fc6fc48c98577d69f5450a5648e9073981f527707babfb6997a3f2690c4e22b51969abb3b2de2d005973a0bb869645",
       "expected_gas": 47257,
-      "expected_gas_source": "eth_estimateGas on the byte-identical Arc Testnet twin 0x1607...4Efa (first anchor for an actionId)"
+      "gas_limit": 57000,
+      "max_fee_per_gas_wei": "40000000000",
+      "max_priority_fee_per_gas_wei": "1000000000",
+      "max_cost_usdc": "0.002280",
+      "expected_cost_usdc_at_20_gwei_base": "0.000992"
     }
   ],
-  "fee_estimate": {
-    "base_fee_gwei": 20,
-    "total_gas": 524831,
-    "total_usdc_at_20_gwei": "0.010497",
-    "note": "USDC is Arc's native gas token; budget 2x for fee headroom"
+  "totals": {
+    "transactions": 5,
+    "expected_gas": 524831,
+    "gas_limit_sum": 632000,
+    "expected_cost_usdc_at_20_gwei_base": "0.011021",
+    "max_cost_usdc_at_caps": "0.025280"
   },
   "signed": false,
   "broadcast": false

@@ -64,7 +64,7 @@ SNAPSHOT_RETENTION = 168                 # snapshot files kept (~7 days hourly)
 # Wallet roles (PUBLIC addresses only; this repository never holds signer material).
 BUILDER_WALLET = "0x6fa3659a15e9264e43ec67fe4bb5d31d38109a42"       # builder attribution only
 PULSE_AGENT_WALLET = "0x765fb7e6a0bdddc29f57eece34aeda0fb318805d"   # owns Pulse's ERC-8004 identity
-DEPLOYER_RECORDER_WALLET = None                                     # separate wallet; pending owner
+DEPLOYER_RECORDER_WALLET = PULSE_AGENT_WALLET                       # owner decision 2026-09-30: Pulse wallet deploys + records
 SITE_URL = "https://chapaevv123.github.io/pulse-arc-radar/"
 REPO_URL = "https://github.com/chapaevv123/pulse-arc-radar"
 AGENT_METADATA_URL = SITE_URL + "agent/erc8004-registration.json"

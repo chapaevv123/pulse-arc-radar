@@ -19,6 +19,8 @@ READ_ONLY_METHODS = frozenset({
     "eth_chainId", "eth_blockNumber", "eth_getBlockByNumber", "eth_getLogs",
     "eth_call", "eth_getBalance", "eth_getTransactionCount",
     "eth_getTransactionReceipt", "eth_getCode",
+    # read-only fee/simulation helpers used by scripts/preflight.py
+    "eth_estimateGas", "eth_gasPrice", "eth_maxPriorityFeePerGas", "eth_feeHistory",
 })
 RATE_LIMIT_CODES = frozenset({-32005, 429})
 MAX_RESPONSE_BYTES = 64 * 1024 * 1024

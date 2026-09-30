@@ -88,8 +88,8 @@ def default_anchors() -> dict:
         "action_id_domain": ACTION_DOMAIN,
         "registry": None,
         "registry_status": "PENDING_MAINNET_DEPLOYMENT",
-        "recorder": config.DEPLOYER_RECORDER_WALLET,
-        "recorder_status": "PENDING_OWNER_SEPARATE_DEPLOYER_WALLET",
+        "recorder": None,                      # set only after the registry is deployed and verified
+        "recorder_status": "PLANNED_NOT_DEPLOYED",
         "roles": {"builder_wallet": config.BUILDER_WALLET, "pulse_agent_wallet": config.PULSE_AGENT_WALLET,
                   "deployer_recorder_wallet": config.DEPLOYER_RECORDER_WALLET},
         "pulse_agent": {

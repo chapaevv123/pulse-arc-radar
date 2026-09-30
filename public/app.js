@@ -289,8 +289,8 @@
         link("https://github.com/chapaevv123/pulse-arc", "chapaevv123/pulse-arc"), ")"])]));
     box.appendChild(card("PulseActionProofRegistry", a.registry ? "DEPLOYED" : "PENDING MAINNET DEPLOYMENT", [
       "Minimal, non-custodial, write-once registry: actionId → proofHash. No token, custody, upgrade or admin path.",
-      el("p", null, ["Recorder: ", a.recorder ? link(explorerAddr(a.recorder), shortHex(a.recorder), "mono")
-        : el("span", { text: "separate deployer wallet (pending)" })])]));
+      el("p", null, [a.recorder ? "Recorder: " : "Planned deployer/recorder (Pulse wallet): ",
+        link(explorerAddr(a.recorder || roles.deployer_recorder_wallet), shortHex(a.recorder || roles.deployer_recorder_wallet), "mono")])]));
     var prepared = (a.prepared_anchors || []).length;
     box.appendChild(card("Anchored snapshot proofs", (a.anchors || []).length ? (a.anchors.length + " anchored") : "NOT YET ANCHORED", [
       "Each snapshot's SHA-256 can be anchored on Arc, so anyone can prove a signal existed at a given block.",

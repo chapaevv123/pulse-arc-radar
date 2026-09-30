@@ -33,7 +33,7 @@ def prepare(snapshot_ids: list[str], snapshots_dir: Path = ROOT / "snapshots") -
     anchors_path = snapshots_dir / "anchors.json"
     current = json.loads(anchors_path.read_bytes()) if anchors_path.exists() else {}
     doc = default_anchors()
-    for key in ("registry", "registry_status", "recorder", "recorder_status", "anchors"):
+    for key in ("registry", "registry_status", "recorder", "anchors"):
         if current.get(key) not in (None, [], ""):
             doc[key] = current[key]
     if (current.get("pulse_agent") or {}).get("agent_id") is not None:

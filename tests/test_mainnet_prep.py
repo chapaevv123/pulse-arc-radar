@@ -66,11 +66,13 @@ class PreparedAnchors(unittest.TestCase):
 class RolesAndMetadata(unittest.TestCase):
     def test_roles_are_distinct_public_addresses(self):
         self.assertNotEqual(config.BUILDER_WALLET, config.PULSE_AGENT_WALLET)
-        self.assertIsNone(config.DEPLOYER_RECORDER_WALLET)
+        self.assertEqual(config.DEPLOYER_RECORDER_WALLET, config.PULSE_AGENT_WALLET)   # owner decision
         anchors = json.loads((ROOT / "snapshots" / "anchors.json").read_bytes())
         self.assertEqual(anchors["roles"]["pulse_agent_wallet"], config.PULSE_AGENT_WALLET)
         self.assertEqual(anchors["pulse_agent"]["owner"], config.PULSE_AGENT_WALLET)
         self.assertIsNone(anchors["registry"])
+        self.assertIsNone(anchors["recorder"])                  # only set after verified deployment
+        self.assertEqual(anchors["roles"]["deployer_recorder_wallet"], config.PULSE_AGENT_WALLET)
         self.assertEqual(anchors["anchors"], [])
         self.assertGreaterEqual(len(anchors["prepared_anchors"]), 2)
 
@@ -97,16 +99,25 @@ class RolesAndMetadata(unittest.TestCase):
         self.assertIn(config.AGENT_METADATA_URL.encode().hex(), reg["data"])
         anchors = json.loads((ROOT / "snapshots" / "anchors.json").read_bytes())["prepared_anchors"]
         self.assertEqual([t["data"] for t in plan["transactions"][2:]], [p["record_proof_calldata"] for p in anchors])
+        txs = plan["transactions"]
+        self.assertEqual([t["nonce"] for t in txs], list(range(txs[0]["nonce"], txs[0]["nonce"] + len(txs))))
+        self.assertTrue(all(t["from"].lower() == config.PULSE_AGENT_WALLET for t in txs))
+        self.assertTrue(all(t["value"] == "0" for t in txs))
+        self.assertTrue(all(t["to"] == plan["predicted_registry_address"] for t in txs[2:]))
+        self.assertIsNone(txs[0]["to"])
+        deploy = json.loads((ROOT / "evidence" / "mainnet_deployment_plan.json").read_bytes())
+        self.assertEqual(txs[0]["data"], deploy["creation_bytecode"] + deploy["constructor_argument_slot"][2:])
+        self.assertTrue(deploy["constructor_argument_slot"].lower().endswith(config.PULSE_AGENT_WALLET[2:]))
+        self.assertTrue(all(t["gas_limit"] >= t["expected_gas"] for t in txs))
 
 
 @unittest.skipUnless(NODE and (ROOT / "node_modules" / "solc").exists(), "contract deps not installed")
 class DeployerSeparation(unittest.TestCase):
-    def test_plan_refuses_pulse_or_builder_wallet_as_deployer(self):
-        for wallet in (config.PULSE_AGENT_WALLET, config.BUILDER_WALLET):
-            out = subprocess.run([NODE, "scripts/contract_facts.js", "--deployer", wallet], cwd=ROOT,
-                                 capture_output=True, text=True, timeout=120)
-            self.assertNotEqual(out.returncode, 0)
-            self.assertIn("DEPLOYER_MUST_BE_SEPARATE_WALLET", out.stderr)
+    def test_plan_refuses_builder_wallet_as_deployer(self):
+        out = subprocess.run([NODE, "scripts/contract_facts.js", "--deployer", config.BUILDER_WALLET], cwd=ROOT,
+                             capture_output=True, text=True, timeout=120)
+        self.assertNotEqual(out.returncode, 0)
+        self.assertIn("BUILDER_WALLET_IS_ATTRIBUTION_ONLY", out.stderr)
 
 
 if __name__ == "__main__":

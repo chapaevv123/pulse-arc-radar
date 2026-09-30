@@ -1,0 +1,51 @@
+{
+  "classification": "ARC_MAINNET_TX3_ANCHOR_RECEIPT",
+  "observed_at_utc": "2026-09-30T20:35:36Z",
+  "chain_id": 5042,
+  "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+  "to": "0x1607Af4E1DA1C06362871443d2e95C367B984Efa",
+  "nonce": 2,
+  "method": "recordProof(bytes32,bytes32)",
+  "snapshot_id": "s-23556237",
+  "action_id": "0x9081c207144b584c85e06508d7764464681b31c8131a8b754d228acea62e9679",
+  "proof_hash": "0x161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14",
+  "transaction_hash": "0x5e8b2c09eb7b5e0d20b827c424739dc4ee534ca51e58be99d3cd29cd1443d609",
+  "block_number": 23596485,
+  "block_timestamp": 1790800509,
+  "block_time_utc": "2026-09-30T20:35:09Z",
+  "event_timestamp": 1790800509,
+  "gas_used": 46873,
+  "effective_gas_price_wei": 21000000000,
+  "actual_fee_wei": 984333000000000,
+  "actual_fee_usdc": "0.000984333",
+  "stored_proof_hash": "0x161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14",
+  "other_prepared_proof_hashes": {
+    "s-23560821": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "s-23564062": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "nonce_after": 3,
+  "balance_before_wei": 92062945000000000,
+  "balance_after_wei": 91078612000000000,
+  "verifier": {
+    "status": "ANCHORED_MATCH",
+    "onchain": "0x161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14"
+  },
+  "checks": {
+    "receipt_status_1": true,
+    "receipt_sender_is_pulse": true,
+    "receipt_destination_is_registry": true,
+    "exactly_one_recorded_event": true,
+    "event_action_id_matches": true,
+    "event_proof_hash_matches": true,
+    "event_recorder_is_pulse": true,
+    "stored_proof_hash_matches": true,
+    "other_prepared_ids_unset": true,
+    "nonce_after_matches": true,
+    "fee_within_max": true,
+    "verifier_anchored_match": true
+  },
+  "result": "TX3_ANCHOR_VERIFIED",
+  "private_key_persisted": false,
+  "raw_signed_transaction_persisted": false,
+  "transactions_broadcast": 1
+}

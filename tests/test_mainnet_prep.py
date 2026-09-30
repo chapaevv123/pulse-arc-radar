@@ -81,8 +81,13 @@ class RolesAndMetadata(unittest.TestCase):
             self.assertEqual(receipt["result"], "TX1_DEPLOY_VERIFIED")
             self.assertEqual(anchors["registry_deployment"]["tx_hash"], receipt["transaction_hash"])
         self.assertEqual(anchors["roles"]["deployer_recorder_wallet"], config.PULSE_AGENT_WALLET)
-        self.assertEqual(anchors["anchors"], [])
         self.assertGreaterEqual(len(anchors["prepared_anchors"]), 2)
+        prepared = {p["snapshot_id"]: p for p in anchors["prepared_anchors"]}
+        for anc in anchors["anchors"]:                                  # every anchor must be a prepared one, verified
+            self.assertEqual(anc["status"], "ANCHORED_VERIFIED")
+            self.assertEqual(prepared[anc["snapshot_id"]]["status"], "ANCHORED")
+            self.assertEqual((anc["action_id"], anc["proof_hash"]),
+                             (prepared[anc["snapshot_id"]]["action_id"], prepared[anc["snapshot_id"]]["proof_hash"]))
 
     def test_pulse_agent_registration_file(self):
         raw = (ROOT / "public" / "agent" / "erc8004-registration.json").read_bytes()

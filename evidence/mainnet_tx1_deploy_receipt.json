@@ -1,0 +1,38 @@
+{
+  "classification": "ARC_MAINNET_TX1_DEPLOY_RECEIPT",
+  "observed_at_utc": "2026-09-30T20:23:31Z",
+  "chain_id": 5042,
+  "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+  "nonce": 0,
+  "transaction_hash": "0xb0b297f8aceaa80bf9da1b47130b10fae1a4a73ac6a3450ef7b39cb832093143",
+  "block_number": 23595066,
+  "contract_address": "0x1607af4e1da1c06362871443d2e95c367b984efa",
+  "gas_used": 177171,
+  "effective_gas_price_wei": 21000000000,
+  "actual_fee_wei": 3720591000000000,
+  "actual_fee_usdc": "0.003720591",
+  "runtime_code_keccak256": "0x6398dce1420129ffb2628a293f5d60b8284db08c73297f2513244536842c7153",
+  "authorized_recorder": "0x765fb7e6a0bdddc29f57eece34aeda0fb318805d",
+  "nonce_after": 1,
+  "balance_before_wei": 100000000000000000,
+  "balance_after_wei": 96279409000000000,
+  "prepared_action_ids_proof_hash": {
+    "0x9081c207144b584c85e06508d7764464681b31c8131a8b754d228acea62e9679": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "0x94ac278571f63492f2f241c5fb3c0e2b559f8bbac36d0dd95dbd8e53735eba2b": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "0xc3d579cdcb67d6911c24a70cd4cb507327fc6fc48c98577d69f5450a5648e907": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "checks": {
+    "receipt_status_1": true,
+    "contract_address_matches": true,
+    "runtime_code_keccak_matches": true,
+    "authorized_recorder_matches": true,
+    "prepared_action_ids_still_zero": true,
+    "nonce_after_is_1": true,
+    "fee_within_max": true,
+    "receipt_from_matches": true
+  },
+  "result": "TX1_DEPLOY_VERIFIED",
+  "private_key_persisted": false,
+  "raw_signed_transaction_persisted": false,
+  "transactions_broadcast": 1
+}

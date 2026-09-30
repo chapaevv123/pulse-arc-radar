@@ -70,8 +70,16 @@ class RolesAndMetadata(unittest.TestCase):
         anchors = json.loads((ROOT / "snapshots" / "anchors.json").read_bytes())
         self.assertEqual(anchors["roles"]["pulse_agent_wallet"], config.PULSE_AGENT_WALLET)
         self.assertEqual(anchors["pulse_agent"]["owner"], config.PULSE_AGENT_WALLET)
-        self.assertIsNone(anchors["registry"])
-        self.assertIsNone(anchors["recorder"])                  # only set after verified deployment
+        # registry/recorder are set only after a verified deployment (tx1, 2026-09-30)
+        if anchors["registry"] is None:
+            self.assertIsNone(anchors["recorder"])
+        else:
+            self.assertEqual(anchors["registry"], "0x1607af4e1da1c06362871443d2e95c367b984efa")
+            self.assertEqual(anchors["registry_status"], "DEPLOYED_VERIFIED")
+            self.assertEqual(anchors["recorder"], config.PULSE_AGENT_WALLET)
+            receipt = json.loads((ROOT / "evidence" / "mainnet_tx1_deploy_receipt.json").read_bytes())
+            self.assertEqual(receipt["result"], "TX1_DEPLOY_VERIFIED")
+            self.assertEqual(anchors["registry_deployment"]["tx_hash"], receipt["transaction_hash"])
         self.assertEqual(anchors["roles"]["deployer_recorder_wallet"], config.PULSE_AGENT_WALLET)
         self.assertEqual(anchors["anchors"], [])
         self.assertGreaterEqual(len(anchors["prepared_anchors"]), 2)

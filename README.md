@@ -6,7 +6,7 @@ Pulse Arc Agent Radar watches Arc mainnet's ERC-8004 registries and USDC activit
 
 - **Live demo:** https://chapaevv123.github.io/pulse-arc-radar/
 - **Builder:** [@MagnatSV](https://x.com/MagnatSV), builder wallet `0x6Fa3659a15e9264E43EC67Fe4bB5d31D38109A42`
-- **Pulse agent identity (mainnet, pending):** owner `0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d`, registration file [`agent/erc8004-registration.json`](https://chapaevv123.github.io/pulse-arc-radar/agent/erc8004-registration.json)
+- **Pulse agent identity (Arc mainnet):** ERC-8004 agent **#1360**, owner `0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d`, registration file [`agent/erc8004-registration.json`](https://chapaevv123.github.io/pulse-arc-radar/agent/erc8004-registration.json)
 - **Testnet predecessor:** [chapaevv123/pulse-arc](https://github.com/chapaevv123/pulse-arc). It has the same proof-registry contract (deployed and RPC-verified on Arc Testnet) and Pulse's ERC-8004 testnet identity, agent #894567.
 
 > **Status: read-only MVP.** Scanning, signals, snapshots and in-browser verification are live.

@@ -86,9 +86,10 @@ class RolesAndMetadata(unittest.TestCase):
 
     def test_pulse_agent_registration_file(self):
         raw = (ROOT / "public" / "agent" / "erc8004-registration.json").read_bytes()
-        res = validate_registration(raw, 1, "HTTP")
-        self.assertEqual(res["status"], "VALID")
-        self.assertEqual(res["backlink"], "MATCH_NO_AGENT_ID")     # agentId is only known after registration
+        res = validate_registration(raw, 1360, "HTTP")                # mainnet agentId from the tx2 receipt
+        self.assertEqual((res["status"], res["backlink"], res["issues"]), ("VALID", "MATCH", []))
+        other = validate_registration(raw, 1, "HTTP")                 # backlink must not match another agent
+        self.assertEqual((other["status"], other["backlink"]), ("INVALID", "MISMATCH"))
         self.assertIs(res["x402"], False)                          # Pulse does not claim x402
         doc = json.loads(raw)
         self.assertEqual([s["endpoint"] for s in doc["services"]],

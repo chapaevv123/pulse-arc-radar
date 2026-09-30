@@ -49,6 +49,7 @@ jobs:
             echo "No data changes"
           else
             git commit -m "scan: $(python -c 'import json;print(json.load(open("snapshots/latest.json"))["snapshot_id"])')"
+            git pull --rebase -q origin main   # tolerate maintainer commits pushed during the scan
             git push
           fi
 

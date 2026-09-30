@@ -1,4 +1,6 @@
-# PulseActionProofRegistry: Arc mainnet plan (NOT DEPLOYED)
+# PulseActionProofRegistry: Arc mainnet (DEPLOYED 2026-09-30)
+
+**Deployed and verified** at `0x1607Af4E1DA1C06362871443d2e95C367B984Efa` (tx `0xb0b297f8…3143`, block 23,595,066). Pulse is ERC-8004 agent #1360, and three snapshots are anchored; receipts are in `evidence/`. The five-transaction owner grant is exhausted. The plan below is kept as the executed record.
 
 `contracts/PulseActionProofRegistry.sol` is copied **byte-for-byte** from the testnet predecessor (`chapaevv123/pulse-arc`). Its source SHA-256 is `cdfb5d3e421c0b79c3f3f5943b9b222fb7a0032685ae4f53379446443307a957`. That exact build is deployed and RPC-verified on Arc Testnet at `0x1607Af4E1DA1C06362871443d2e95C367B984Efa`.
 

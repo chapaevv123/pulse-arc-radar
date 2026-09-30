@@ -282,20 +282,34 @@
         .concat(lines.map(function (l) { return typeof l === "string" ? el("p", { text: l }) : l; })));
     }
     var roles = a.roles || {};
-    box.appendChild(card("Pulse ERC-8004 identity", agent.agent_id ? "REGISTERED · agent #" + agent.agent_id : "PENDING MAINNET DEPLOYMENT", [
-      "Pulse will register as an agent on the Arc mainnet IdentityRegistry, pointing to this radar.",
+    var reg = agent.registration || {}, dep = a.registry_deployment || {};
+    var verified = function (st) { return /VERIFIED/.test(st || "") ? " · VERIFIED" : ""; };
+    box.appendChild(card("Pulse ERC-8004 identity",
+      agent.agent_id != null ? "REGISTERED" + verified(agent.status) + " · agent #" + agent.agent_id : "PENDING MAINNET REGISTRATION", [
+      agent.agent_id != null ? "Pulse is ERC-8004 agent #" + agent.agent_id + " on the Arc mainnet IdentityRegistry, pointing to this radar."
+        : "Pulse will register as an agent on the Arc mainnet IdentityRegistry, pointing to this radar.",
       el("p", null, ["Agent owner (Pulse wallet): ", link(explorerAddr(agent.owner), shortHex(agent.owner), "mono")]),
+      reg.tx_hash ? el("p", null, ["Registration: ", link(explorerTx(reg.tx_hash), "tx " + shortHex(reg.tx_hash), "mono"),
+        " · ", link(explorerAddr(agent.identity_registry), "IdentityRegistry")]) : null,
       el("p", null, [link(agent.metadata_uri, "Registration file"), " · testnet predecessor agent #894567 (",
-        link("https://github.com/chapaevv123/pulse-arc", "chapaevv123/pulse-arc"), ")"])]));
-    box.appendChild(card("PulseActionProofRegistry", a.registry ? "DEPLOYED" : "PENDING MAINNET DEPLOYMENT", [
+        link("https://github.com/chapaevv123/pulse-arc", "chapaevv123/pulse-arc"), ")"])].filter(Boolean)));
+    box.appendChild(card("PulseActionProofRegistry",
+      a.registry ? "DEPLOYED" + verified(a.registry_status) : "PENDING MAINNET DEPLOYMENT", [
       "Minimal, non-custodial, write-once registry: actionId → proofHash. No token, custody, upgrade or admin path.",
-      el("p", null, [a.recorder ? "Recorder: " : "Planned deployer/recorder (Pulse wallet): ",
-        link(explorerAddr(a.recorder || roles.deployer_recorder_wallet), shortHex(a.recorder || roles.deployer_recorder_wallet), "mono")])]));
-    var prepared = (a.prepared_anchors || []).length;
-    box.appendChild(card("Anchored snapshot proofs", (a.anchors || []).length ? (a.anchors.length + " anchored") : "NOT YET ANCHORED", [
-      "Each snapshot's SHA-256 can be anchored on Arc, so anyone can prove a signal existed at a given block.",
-      prepared + " snapshots prepared for anchoring (not sent). Anchoring happens only after owner-approved mainnet deployment.",
-      el("p", null, ["Builder: ", link("https://x.com/MagnatSV", "@MagnatSV"), " · ", link(explorerAddr(roles.builder_wallet), shortHex(roles.builder_wallet), "mono")])]));
+      a.registry ? el("p", null, ["Contract: ", link(explorerAddr(a.registry), shortHex(a.registry), "mono"),
+        dep.tx_hash ? " · deploy " : "", dep.tx_hash ? link(explorerTx(dep.tx_hash), "tx " + shortHex(dep.tx_hash), "mono") : null]) : null,
+      el("p", null, [a.recorder ? "Recorder (Pulse wallet): " : "Planned deployer/recorder (Pulse wallet): ",
+        link(explorerAddr(a.recorder || roles.deployer_recorder_wallet), shortHex(a.recorder || roles.deployer_recorder_wallet), "mono")])
+    ].filter(Boolean)));
+    var anchored = a.anchors || [];
+    var waiting = (a.prepared_anchors || []).filter(function (p) { return p.status === "PREPARED_NOT_SENT"; }).length;
+    box.appendChild(card("Anchored snapshot proofs", anchored.length ? anchored.length + " ANCHORED ON ARC" : "NOT YET ANCHORED", [
+      "Each anchored snapshot's SHA-256 is stored onchain, so anyone can prove what Pulse published at that block. Use the verifier below to check it live."
+    ].concat(anchored.map(function (x) {
+      return el("p", null, [el("span", { class: "mono", text: x.snapshot_id + " " }),
+        link(explorerTx(x.tx_hash), "tx " + shortHex(x.tx_hash), "mono"), " · block " + fmtInt(x.block_number)]);
+    })).concat(waiting ? [waiting + " prepared snapshot(s) not yet anchored."] : []).concat([
+      el("p", null, ["Builder: ", link("https://x.com/MagnatSV", "@MagnatSV"), " · ", link(explorerAddr(roles.builder_wallet), shortHex(roles.builder_wallet), "mono")])])));
   }
 
   // ---- verifier ----------------------------------------------------------

@@ -31,7 +31,7 @@
 │   index + actionId; anchor lookup via eth_call proofHashByAction       │
 └────────────────────────────────────────────────────────────────────────┘
 
-Phase 2 (owner-approved, local, never CI):
+Phase 2 (owner-approved, local, never CI; completed 2026-09-30):
   recordProof(actionId, proofHash) ──► PulseActionProofRegistry (Arc mainnet)
   register(agentURI)               ──► ERC-8004 IdentityRegistry 0x8004A169… (Pulse agent)
 ```

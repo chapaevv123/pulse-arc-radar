@@ -10,7 +10,7 @@
 - It cannot sign or broadcast anything. The workflow has no secrets and the scanner has no write path.
 - `scripts/contract_facts.js` only compiles the contract and writes an **unsigned** plan (`signed: false`, `broadcast: false`, `deployed_address: null`).
 
-Mainnet writes (deploying the registry, registering the Pulse agent, anchoring snapshots) are a separate Phase 2. Each one is shown to the owner in full and signed locally by the owner under a scoped grant. Keys never go into CI.
+Mainnet writes (deploying the registry, registering the Pulse agent, anchoring snapshots) were a separate Phase 2, now complete: 5 transactions under an owner grant that is now exhausted. Each one is shown to the owner in full and signed locally by the owner under a scoped grant. Keys never go into CI.
 
 ## RPC discipline
 - `eth_getLogs` ranges are at most 9,999 blocks (Arc rejects 10,000 or more with `-32012`).

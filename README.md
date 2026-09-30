@@ -54,7 +54,7 @@ Canonical JSON follows the same rules in Python and JavaScript:
 Parity between the two implementations is enforced by tests. The same `(actionId, proofHash)` pair is what `PulseActionProofRegistry.recordProof` stores once mainnet anchoring is approved. To verify locally:
 
 ```
-python scripts/verify_anchor.py            # latest snapshot; reports NOT_YET_ANCHORED until a registry exists
+python scripts/verify_anchor.py --snapshot snapshots/s-23564062.json   # anchored: ANCHORED_MATCH (read-only eth_call)
 ```
 
 ## Architecture
@@ -76,7 +76,7 @@ Arc mainnet RPC ─────────────────────�
                           browser: SHA-256 re-verification ◄──────┤
                           browser: live head + anchor lookup ─────┘ (eth_call only)
 
-Phase 2, after owner approval:  owner-signed recordProof(actionId, proofHash) ──► PulseActionProofRegistry on Arc
+Phase 2 (done 2026-09-30):     owner-approved recordProof(actionId, proofHash) ──► PulseActionProofRegistry 0x1607…4Efa
 ```
 
 There is no server, database, Worker or paid API. The scanner uses only the Python standard library.

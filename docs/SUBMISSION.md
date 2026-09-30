@@ -1,7 +1,6 @@
 # Arc Microgrants: submission draft (NOT SUBMITTED)
 
-> Submit only after Phase 2: the program requires a working deployment on **Arc mainnet**.
-> The fields below read correctly once the registry contract is deployed, at least one snapshot is anchored, and Pulse is registered as an agent on mainnet. Until then, those parts are marked PENDING.
+> The Arc mainnet deployment is complete (2026-09-30). Submission is still a manual owner step.
 
 **Name:** Pulse Arc Agent Radar
 
@@ -32,8 +31,8 @@ The Arc mainnet RPC feeds a GitHub Actions scanner (Python standard library, pac
 **GitHub:** https://github.com/chapaevv123/pulse-arc-radar
 **Builder profile:** https://x.com/MagnatSV (builder wallet on Arc: `0x6Fa3659a15e9264E43EC67Fe4bB5d31D38109A42`)
 **Pulse agent wallet:** `0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d` (continuity with the testnet predecessor, agent #894567)
-**Mainnet proof (Phase 2, PENDING):**
-- registry contract address: *(pending)*
-- deployment transaction: *(pending)*
-- first anchor transaction: *(pending)*
-- Pulse agentId on mainnet: *(pending)*
+**Mainnet proof (Arc mainnet, chain 5042):**
+- registry contract: `0x1607Af4E1DA1C06362871443d2e95C367B984Efa`, https://explorer.arc.io/address/0x1607Af4E1DA1C06362871443d2e95C367B984Efa
+- deployment transaction: `0xb0b297f8aceaa80bf9da1b47130b10fae1a4a73ac6a3450ef7b39cb832093143` (block 23,595,066)
+- Pulse ERC-8004 agent: **#1360**, register tx `0x95a5bd700361aca939b026ff6486ac55e9d1913bf2a1c93a65b36a1b8cce2844`
+- anchor transactions: `0x5e8b2c09…d609` (s-23556237), `0x2a4907e4…66f8` (s-23560821), `0x1e9a2b94…9c99` (s-23564062)

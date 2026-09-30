@@ -9,9 +9,11 @@ Pulse Arc Agent Radar watches Arc mainnet's ERC-8004 registries and USDC activit
 - **Pulse agent identity (Arc mainnet):** ERC-8004 agent **#1360**, owner `0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d`, registration file [`agent/erc8004-registration.json`](https://chapaevv123.github.io/pulse-arc-radar/agent/erc8004-registration.json)
 - **Testnet predecessor:** [chapaevv123/pulse-arc](https://github.com/chapaevv123/pulse-arc). It has the same proof-registry contract (deployed and RPC-verified on Arc Testnet) and Pulse's ERC-8004 testnet identity, agent #894567.
 
-> **Status: read-only MVP.** Scanning, signals, snapshots and in-browser verification are live.
-> The Arc mainnet registry contract, Pulse's mainnet ERC-8004 identity, and snapshot anchoring are
-> **PENDING MAINNET DEPLOYMENT**. The dashboard labels them that way and never displays a fake anchor.
+> **Status: live on Arc mainnet (chain 5042).** The scanner and dashboard are read-only. Onchain proof:
+> - `PulseActionProofRegistry` at [`0x1607Af4E1DA1C06362871443d2e95C367B984Efa`](https://explorer.arc.io/address/0x1607Af4E1DA1C06362871443d2e95C367B984Efa), deploy tx [`0xb0b297f8…3143`](https://explorer.arc.io/tx/0xb0b297f8aceaa80bf9da1b47130b10fae1a4a73ac6a3450ef7b39cb832093143)
+> - Pulse registered as **ERC-8004 agent #1360**, tx [`0x95a5bd70…2844`](https://explorer.arc.io/tx/0x95a5bd700361aca939b026ff6486ac55e9d1913bf2a1c93a65b36a1b8cce2844)
+> - 3 snapshots anchored: `s-23556237` ([tx](https://explorer.arc.io/tx/0x5e8b2c09eb7b5e0d20b827c424739dc4ee534ca51e58be99d3cd29cd1443d609)), `s-23560821` ([tx](https://explorer.arc.io/tx/0x2a4907e4ddc2d21749671dd9baf4df4fd27a5cefffdbd3373bd81b973d6766f8)), `s-23564062` ([tx](https://explorer.arc.io/tx/0x1e9a2b94a8672b596ff7431b791022c06af6e3cea23f34a4838a944f64db9c99)); each is `ANCHORED_MATCH` in the verifier
+> - Receipts: `evidence/mainnet_tx*_receipt.json`. Total gas cost: 0.010890 USDC.
 
 ## What it does
 

@@ -1,0 +1,36 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "Pulse Arc Agent Radar",
+  "description": "Open intelligence radar for Arc's agent economy, monitoring ERC-8004 registrations, metadata, endpoints, x402 declarations, USDC activity and verifiable Pulse signals.",
+  "image": "https://chapaevv123.github.io/pulse-arc/assets/pulse-agent.png",
+  "services": [
+    {
+      "name": "web",
+      "endpoint": "https://chapaevv123.github.io/pulse-arc-radar/"
+    },
+    {
+      "name": "snapshots",
+      "endpoint": "https://chapaevv123.github.io/pulse-arc-radar/snapshots/latest.json"
+    }
+  ],
+  "x402Support": false,
+  "active": true,
+  "registrations": [
+    {
+      "agentRegistry": "eip155:5042:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+    }
+  ],
+  "supportedTrust": [],
+  "pulse": {
+    "repository": "https://github.com/chapaevv123/pulse-arc-radar",
+    "builder": "https://x.com/MagnatSV",
+    "builder_wallet": "eip155:5042:0x6Fa3659a15e9264E43EC67Fe4bB5d31D38109A42",
+    "agent_owner_wallet": "eip155:5042:0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+    "testnet_predecessor": {
+      "agentId": 894567,
+      "agentRegistry": "eip155:5042002:0x8004A818BFB912233c491871b3d84c89A494BD9e",
+      "repository": "https://github.com/chapaevv123/pulse-arc"
+    },
+    "license": "MIT"
+  }
+}

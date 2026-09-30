@@ -1,0 +1,22 @@
+{
+  "project": "Pulse — Arc",
+  "status": "DEPLOYED_AND_RPC_VERIFIED",
+  "network": "Arc Testnet",
+  "chain_id": 5042002,
+  "contract": "PulseActionProofRegistry",
+  "address": "0x1607Af4E1DA1C06362871443d2e95C367B984Efa",
+  "transaction_hash": "0xbbc906f56164560e160e1adcaa40e687a34400c0f0b3de182030416488308651",
+  "block_number": 61717046,
+  "timestamp_utc": "2026-09-12T10:44:14Z",
+  "deployer": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+  "authorized_recorder": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+  "source_sha256": "cdfb5d3e421c0b79c3f3f5943b9b222fb7a0032685ae4f53379446443307a957",
+  "creation_bytecode_keccak256": "0xdeb263de46f571d32498cc1953f17af7577d89f1a046a9737d1cf988e99458e4",
+  "runtime_bytecode_keccak256": "0x6398dce1420129ffb2628a293f5d60b8284db08c73297f2513244536842c7153",
+  "runtime_bytecode_verified": true,
+  "gas_used": 177171,
+  "actual_cost_native_test_usdc": "0.003897762",
+  "record_proof_calls": 0,
+  "arcscan_transaction": "https://testnet.arcscan.app/tx/0xbbc906f56164560e160e1adcaa40e687a34400c0f0b3de182030416488308651",
+  "arcscan_contract": "https://testnet.arcscan.app/address/0x1607Af4E1DA1C06362871443d2e95C367B984Efa"
+}

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://rpc.mainnet.arc.io; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>Pulse Arc Agent Radar</title>
+<meta name="description" content="Live, read-only intelligence for Arc mainnet's ERC-8004 agent economy, with verifiable snapshots.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <div class="brand">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      <div>
+        <h1>PULSE ARC AGENT RADAR</h1>
+        <p class="sub">Live intelligence for Arc's agent economy</p>
+      </div>
+    </div>
+    <div class="chips">
+      <span class="chip">Arc mainnet · chain 5042</span>
+      <span class="chip">Read-only</span>
+      <span class="chip" id="chip-scan">Loading…</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="error" id="load-error" hidden></p>
+
+  <section class="hero" aria-label="Overview">
+    <div class="hero-main">
+      <span class="label">Agents observed</span>
+      <span class="hero-value" id="hero-agents">–</span>
+      <span class="muted" id="hero-note"></span>
+    </div>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-coverage">
+    <div class="panel-head">
+      <h2 id="h-coverage">Coverage</h2>
+      <span class="muted" id="coverage-text"></span>
+    </div>
+    <div class="meter" role="img" id="coverage-meter"><div class="meter-fill" id="coverage-fill"></div></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-timeline">
+    <div class="panel-head">
+      <h2 id="h-timeline">Registrations per day</h2>
+      <span class="muted">UTC days · times approximated from block timestamps</span>
+    </div>
+    <div class="chart" id="timeline"></div>
+    <div class="tooltip" id="tooltip" role="status" hidden></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-agents">
+    <div class="panel-head">
+      <h2 id="h-agents">Agents</h2>
+      <span class="muted" id="table-count"></span>
+    </div>
+    <div class="controls">
+      <div class="seg" id="class-filter" role="group" aria-label="Filter by Pulse class"></div>
+      <input type="search" id="search" placeholder="Search id, owner, name" aria-label="Search agents" autocomplete="off">
+    </div>
+    <div class="table-scroll">
+      <table class="agents">
+        <thead><tr>
+          <th>Agent</th><th>Registered</th><th>Owner</th><th>Metadata</th><th>Endpoint</th>
+          <th>x402</th><th>USDC</th><th>Pulse signal</th><th>Evidence</th>
+        </tr></thead>
+        <tbody id="agent-rows"></tbody>
+      </table>
+    </div>
+    <div class="pager">
+      <button type="button" id="prev">Previous</button>
+      <span class="muted" id="page-info"></span>
+      <button type="button" id="next">Next</button>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-clusters">
+    <div class="panel-head">
+      <h2 id="h-clusters">Registration clusters</h2>
+      <span class="muted">Heuristic patterns for review, not judgements</span>
+    </div>
+    <div class="table-scroll"><table class="clusters">
+      <thead><tr><th>Kind</th><th>Key</th><th>Agents</th><th>Agent id range</th></tr></thead>
+      <tbody id="cluster-rows"></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-pulse">
+    <div class="panel-head"><h2 id="h-pulse">Pulse on Arc</h2></div>
+    <div class="cards" id="pulse-on-arc"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-verify">
+    <div class="panel-head">
+      <h2 id="h-verify">Verify a snapshot</h2>
+      <span class="muted">SHA-256 computed in your browser</span>
+    </div>
+    <div class="controls">
+      <select id="snapshot-select" aria-label="Snapshot"></select>
+      <button type="button" id="verify-btn">Verify</button>
+    </div>
+    <dl class="verify" id="verify-out"></dl>
+  </section>
+
+  <section class="panel" aria-labelledby="h-signals">
+    <div class="panel-head"><h2 id="h-signals">Signal definitions</h2></div>
+    <dl class="defs" id="signal-defs"></dl>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p id="notice"></p>
+  <p>Built by <a href="https://x.com/MagnatSV" rel="nofollow noopener noreferrer" target="_blank">@MagnatSV</a> ·
+     testnet predecessor <a href="https://github.com/chapaevv123/pulse-arc" rel="nofollow noopener noreferrer" target="_blank">chapaevv123/pulse-arc</a> ·
+     data: Arc mainnet public RPC · explorer <a href="https://explorer.arc.io" rel="nofollow noopener noreferrer" target="_blank">explorer.arc.io</a></p>
+  <p class="muted">Agent names, descriptions and URLs are untrusted third-party content, shown as plain text. Not affiliated with or endorsed by Arc or Circle.</p>
+</footer>
+
+<script src="verify.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

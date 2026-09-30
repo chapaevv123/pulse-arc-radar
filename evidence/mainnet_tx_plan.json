@@ -1,0 +1,74 @@
+{
+  "classification": "UNSIGNED_MAINNET_TRANSACTION_PLAN",
+  "chain_id": 5042,
+  "rpc": "https://rpc.mainnet.arc.io",
+  "roles": {
+    "builder_wallet": "0x6Fa3659a15e9264E43EC67Fe4bB5d31D38109A42",
+    "pulse_agent_wallet": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+    "deployer_recorder_wallet": "PENDING_OWNER"
+  },
+  "transactions": [
+    {
+      "step": 1,
+      "action": "DEPLOY_PulseActionProofRegistry",
+      "from": "PENDING_OWNER(separate deployer)",
+      "to": null,
+      "value": "0",
+      "data": "creation_bytecode || 000000000000000000000000<DEPLOYER_ADDRESS_20_BYTES_NO_0x>",
+      "creation_bytecode_keccak256": "0xdeb263de46f571d32498cc1953f17af7577d89f1a046a9737d1cf988e99458e4",
+      "init_code_keccak256": null,
+      "expected_gas": 179515
+    },
+    {
+      "step": 2,
+      "action": "ERC8004_REGISTER_PULSE_AGENT",
+      "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+      "to": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+      "value": "0",
+      "method": "register(string)",
+      "selector": "0xf2c298be",
+      "argument": "https://chapaevv123.github.io/pulse-arc-radar/agent/erc8004-registration.json",
+      "data": "0xf2c298be0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004d68747470733a2f2f63686170616576763132332e6769746875622e696f2f70756c73652d6172632d72616461722f6167656e742f657263383030342d726567697374726174696f6e2e6a736f6e00000000000000000000000000000000000000",
+      "expected_gas": 203545,
+      "expected_gas_source": "Arc mainnet eth_estimateGas from the Pulse wallet 2026-09-30; eth_call simulation succeeded (would mint agentId 1355 at that block)"
+    },
+    {
+      "step": 3,
+      "action": "ANCHOR_SNAPSHOT",
+      "snapshot_id": "s-23556237",
+      "from": "PENDING_OWNER(recorder = deployer)",
+      "to": "PENDING_DEPLOYED_REGISTRY_ADDRESS",
+      "value": "0",
+      "method": "recordProof(bytes32,bytes32)",
+      "selector": "0x43f09497",
+      "action_id": "0x9081c207144b584c85e06508d7764464681b31c8131a8b754d228acea62e9679",
+      "proof_hash": "0x161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14",
+      "data": "0x43f094979081c207144b584c85e06508d7764464681b31c8131a8b754d228acea62e9679161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14",
+      "expected_gas": 47257,
+      "expected_gas_source": "eth_estimateGas on the byte-identical Arc Testnet twin 0x1607...4Efa (first anchor for an actionId)"
+    },
+    {
+      "step": 4,
+      "action": "ANCHOR_SNAPSHOT",
+      "snapshot_id": "s-23560821",
+      "from": "PENDING_OWNER(recorder = deployer)",
+      "to": "PENDING_DEPLOYED_REGISTRY_ADDRESS",
+      "value": "0",
+      "method": "recordProof(bytes32,bytes32)",
+      "selector": "0x43f09497",
+      "action_id": "0x94ac278571f63492f2f241c5fb3c0e2b559f8bbac36d0dd95dbd8e53735eba2b",
+      "proof_hash": "0x542f8377fd3972cf5c94f290197c12e480fc27b98bae1cba7aa70dfa38b5259a",
+      "data": "0x43f0949794ac278571f63492f2f241c5fb3c0e2b559f8bbac36d0dd95dbd8e53735eba2b542f8377fd3972cf5c94f290197c12e480fc27b98bae1cba7aa70dfa38b5259a",
+      "expected_gas": 47257,
+      "expected_gas_source": "eth_estimateGas on the byte-identical Arc Testnet twin 0x1607...4Efa (first anchor for an actionId)"
+    }
+  ],
+  "fee_estimate": {
+    "base_fee_gwei": 20,
+    "total_gas": 477574,
+    "total_usdc_at_20_gwei": "0.009551",
+    "note": "USDC is Arc's native gas token; budget 2x for fee headroom"
+  },
+  "signed": false,
+  "broadcast": false
+}

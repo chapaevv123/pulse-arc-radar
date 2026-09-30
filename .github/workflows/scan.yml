@@ -1,0 +1,63 @@
+# Pulse Arc Agent Radar - hourly read-only scan + GitHub Pages deploy.
+# No wallet, no keys, no signing: the scanner only calls read methods on the
+# public Arc mainnet RPC. Commits happen only when snapshot/state data changed.
+name: scan
+
+on:
+  schedule:
+    - cron: "17 * * * *"        # hourly, off the top of the hour
+  workflow_dispatch:
+
+permissions:
+  contents: write               # commit snapshots/ and state/
+  pages: write
+  id-token: write               # required by actions/deploy-pages
+
+concurrency:
+  group: scan
+  cancel-in-progress: false     # never run two scanners against the same cursor
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"   # scanner uses the standard library only
+
+      - name: Unit tests (offline)
+        run: python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Read-only scan
+        run: python -m src.scanner.run
+
+      - name: Verify latest snapshot
+        run: python scripts/verify_anchor.py
+
+      - name: Commit data if changed
+        run: |
+          git config user.name "pulse-arc-radar-bot"
+          git config user.email "pulse-arc-radar-bot@users.noreply.github.com"
+          git add snapshots state
+          if git diff --cached --quiet; then
+            echo "No data changes"
+          else
+            git commit -m "scan: $(python -c 'import json;print(json.load(open("snapshots/latest.json"))["snapshot_id"])')"
+            git push
+          fi
+
+      - name: Build static site
+        run: python scripts/build_site.py _site
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

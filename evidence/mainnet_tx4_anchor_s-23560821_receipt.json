@@ -1,0 +1,59 @@
+{
+  "classification": "ARC_MAINNET_TX4_ANCHOR_RECEIPT",
+  "observed_at_utc": "2026-09-30T20:42:21Z",
+  "chain_id": 5042,
+  "from": "0x765fb7e6a0BdDDc29f57eeCE34AEda0Fb318805d",
+  "to": "0x1607Af4E1DA1C06362871443d2e95C367B984Efa",
+  "nonce": 3,
+  "method": "recordProof(bytes32,bytes32)",
+  "snapshot_id": "s-23560821",
+  "action_id": "0x94ac278571f63492f2f241c5fb3c0e2b559f8bbac36d0dd95dbd8e53735eba2b",
+  "proof_hash": "0x542f8377fd3972cf5c94f290197c12e480fc27b98bae1cba7aa70dfa38b5259a",
+  "transaction_hash": "0x2a4907e4ddc2d21749671dd9baf4df4fd27a5cefffdbd3373bd81b973d6766f8",
+  "block_number": 23597290,
+  "block_timestamp": 1790800917,
+  "block_time_utc": "2026-09-30T20:41:57Z",
+  "event_timestamp": 1790800917,
+  "gas_used": 46873,
+  "effective_gas_price_wei": 21000000000,
+  "actual_fee_wei": 984333000000000,
+  "actual_fee_usdc": "0.000984333",
+  "stored_proof_hash": "0x542f8377fd3972cf5c94f290197c12e480fc27b98bae1cba7aa70dfa38b5259a",
+  "other_prepared_proof_hashes": {
+    "s-23556237": "0x161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14",
+    "s-23564062": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "expected_other_state": {
+    "anchored": {
+      "s-23556237": "0x161c53c37b41a9f7dba2b6a519d265e91b1ee5ec1b84e522f5a1f30dce434f14"
+    },
+    "unset": [
+      "s-23564062"
+    ]
+  },
+  "nonce_after": 4,
+  "balance_before_wei": 91078612000000000,
+  "balance_after_wei": 90094279000000000,
+  "verifier": {
+    "status": "ANCHORED_MATCH",
+    "onchain": "0x542f8377fd3972cf5c94f290197c12e480fc27b98bae1cba7aa70dfa38b5259a"
+  },
+  "checks": {
+    "receipt_status_1": true,
+    "receipt_sender_is_pulse": true,
+    "receipt_destination_is_registry": true,
+    "exactly_one_recorded_event": true,
+    "event_action_id_matches": true,
+    "event_proof_hash_matches": true,
+    "event_recorder_is_pulse": true,
+    "stored_proof_hash_matches": true,
+    "other_anchors_exactly_as_expected": true,
+    "nonce_after_matches": true,
+    "fee_within_max": true,
+    "verifier_anchored_match": true
+  },
+  "result": "TX4_ANCHOR_VERIFIED",
+  "private_key_persisted": false,
+  "raw_signed_transaction_persisted": false,
+  "transactions_broadcast": 1
+}
